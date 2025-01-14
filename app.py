@@ -7,10 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1kom8fNMLLlkz9UDkedBUWQ8Ne0pc6tm5
 """
 
-!pip install streamlit
-!pip install openai
-!pip install sympy
-!pip install python-dotenv
 import streamlit as st
 import openai
 import os
