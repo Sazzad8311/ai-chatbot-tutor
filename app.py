@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1kom8fNMLLlkz9UDkedBUWQ8Ne0pc6tm5
 """
 
+!pip install --upgrade openai
 import streamlit as st
 import openai
 import os
@@ -158,5 +159,3 @@ elif choice == "📂 Study Resources":
 # ---- Footer ----
 st.markdown("---")
 st.markdown("Developed with ❤️ for Electronics Students by **Mohammed Sazzad Yousuf**")
-
-"""# New Section"""
