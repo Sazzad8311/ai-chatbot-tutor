@@ -100,7 +100,7 @@ with st.sidebar:
 if choice == "🏠 Home":
     st.markdown("## 👋 Welcome to the AI Chatbot Tutor!")
     st.info("This interactive tool helps you learn Electronics Devices and Circuits with explanations, quizzes, and problem-solving features.")
-    st.image("https://i.imgur.com/ZyDhzC3.png", caption="Learn Electronics Effectively")
+    st.image("https://airbnb.pvxt.net/c/5614250/567379/4273?u=www.airbnb.co.in/", caption="Learn Electronics Effectively")
 
 elif choice == "📖 Concept Explanation":
     st.header("📘 Concept Explanation")
@@ -153,6 +153,6 @@ elif choice == "📂 Study Resources":
 
 # ---- Footer ----
 st.markdown("---")
-st.markdown("Developed with ❤️ for Electronics Students by **[Your Name]**")
+st.markdown("Developed with ❤️ for Electronics Students by **Mohammed Sazzad Yousuf**")
 
 """# New Section"""
