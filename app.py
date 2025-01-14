@@ -91,7 +91,7 @@ def design_circuit(component):
 
 # ---- Sidebar Navigation ----
 with st.sidebar:
-    st.image("https://media.geeksforgeeks.org/wp-content/uploads/20230210133728/Diode-and-Zener-Diode-1.png", width=100)
+    st.image("https://airbnb.pvxt.net/c/5614250/567379/4273?u=www.airbnb.co.in/", width=100)
     st.title("📚 AI Chatbot Tutor")
     menu = ["🏠 Home", "📖 Concept Explanation", "🧮 Numerical Solver", "📝 Interactive Quiz", "🔧 Circuit Design", "📂 Study Resources"]
     choice = st.radio("Navigate", menu)
@@ -154,3 +154,5 @@ elif choice == "📂 Study Resources":
 # ---- Footer ----
 st.markdown("---")
 st.markdown("Developed with ❤️ for Electronics Students by **[Your Name]**")
+
+"""# New Section"""
