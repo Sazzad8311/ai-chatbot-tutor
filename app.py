@@ -91,7 +91,7 @@ def design_circuit(component):
 
 # ---- Sidebar Navigation ----
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Diode_symbol.svg/1200px-Diode_symbol.svg.png", width=100)
+    st.image("https://media.geeksforgeeks.org/wp-content/uploads/20230210133728/Diode-and-Zener-Diode-1.png", width=100)
     st.title("📚 AI Chatbot Tutor")
     menu = ["🏠 Home", "📖 Concept Explanation", "🧮 Numerical Solver", "📝 Interactive Quiz", "🔧 Circuit Design", "📂 Study Resources"]
     choice = st.radio("Navigate", menu)
