@@ -45,13 +45,17 @@ st.markdown("""
 
 # ---- Helper Functions ----
 def explain_concept(concept):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Explain the concept of {concept} in Electronics Device and Circuit.",
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # Or "gpt-4" if you have access
+        messages=[
+            {"role": "system", "content": "You are a helpful electronics tutor."},
+            {"role": "user", "content": f"Explain the concept of {concept} in Electronics Device and Circuit."}
+        ],
         max_tokens=250,
         temperature=0.5
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message["content"].strip()
+
 
 def solve_ohms_law(voltage=None, current=None, resistance=None):
     V, I, R = symbols('V I R')
