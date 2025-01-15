@@ -86,14 +86,16 @@ def generate_quiz():
     return random.choice(questions)
 
 def design_circuit(component):
-    prompt = f"Provide step-by-step instructions to design a simple circuit using {component}."
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=250,
-        temperature=0.5
-    )
-    return response.choices[0].text.strip()
+    try:
+        response = client.completions.create(
+            model="text-davinci-003",  # Use the appropriate model
+            prompt=f"Design a simple circuit using {component}.",
+            max_tokens=250,
+            temperature=0.5
+        )
+        return response.choices[0].text.strip()
+    except Exception as e:
+        return f"⚠️ Error: {e}"
 
 # ---- Sidebar Navigation ----
 with st.sidebar:
