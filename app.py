@@ -13,6 +13,7 @@ import os
 from sympy import symbols, Eq, solve
 import random
 from dotenv import load_dotenv
+import math
 
 # Load API key
 load_dotenv()
@@ -58,21 +59,41 @@ def explain_concept(concept):
     )
     return response.choices[0].message.content.strip()
 
-
-def solve_ohms_law(voltage=None, current=None, resistance=None):
-    V, I, R = symbols('V I R')
-    equation = Eq(V, I * R)
+def ohms_law(voltage=None, current=None, resistance=None):
     if voltage is None:
-        result = solve(equation.subs({I: current, R: resistance}), V)
-        return f"Calculated Voltage: {result[0]} V"
+        return f"Voltage (V) = {current} A × {resistance} Ω = {current * resistance} V"
     elif current is None:
-        result = solve(equation.subs({V: voltage, R: resistance}), I)
-        return f"Calculated Current: {result[0]} A"
+        return f"Current (I) = {voltage} V ÷ {resistance} Ω = {voltage / resistance} A"
     elif resistance is None:
-        result = solve(equation.subs({V: voltage, I: current}), R)
-        return f"Calculated Resistance: {result[0]} Ω"
+        return f"Resistance (R) = {voltage} V ÷ {current} A = {voltage / current} Ω"
     else:
-        return "Please provide at least one missing value."
+        return "Please leave one value as None to calculate it."
+
+def rc_time_constant(resistance, capacitance):
+    tau = resistance * capacitance
+    return f"Time Constant (τ) = {resistance} Ω × {capacitance} F = {tau} seconds"
+
+def resonant_frequency(inductance, capacitance):
+    f0 = 1 / (2 * math.pi * math.sqrt(inductance * capacitance))
+    return f"Resonant Frequency (f₀) = {f0:.2f} Hz"
+
+def power_dissipation(current=None, voltage=None, resistance=None):
+    if current is not None and resistance is not None:
+        power = current ** 2 * resistance
+        return f"Power (P) = {current}² × {resistance} = {power} W"
+    elif voltage is not None and resistance is not None:
+        power = (voltage ** 2) / resistance
+        return f"Power (P) = {voltage}² ÷ {resistance} = {power} W"
+    else:
+        return "Provide either (current & resistance) or (voltage & resistance)."
+
+def voltage_divider(v_in, r1, r2):
+    v_out = v_in * (r2 / (r1 + r2))
+    return f"Output Voltage (Vout) = {v_out:.2f} V"
+
+def capacitor_charging(voltage_max, resistance, capacitance, time):
+    voltage = voltage_max * (1 - math.exp(-time / (resistance * capacitance)))
+    return f"Voltage at {time} sec = {voltage:.2f} V"
 
 def generate_quiz():
     questions = [
@@ -119,18 +140,61 @@ elif choice == "📖 Concept Explanation":
             st.progress(100)
 
 elif choice == "🧮 Numerical Solver":
-    st.header("🔢 Ohm's Law Calculator")
-    voltage = st.number_input("Voltage (V):", value=0.0)
-    current = st.number_input("Current (I):", value=0.0)
-    resistance = st.number_input("Resistance (R):", value=0.0)
+    solver_option = st.selectbox("Select a Numerical Solver", [
+    "Ohm's Law Calculator",
+    "RC Circuit Time Constant",
+    "Resonant Frequency of LC Circuit",
+    "Power Dissipation in Resistors",
+    "Voltage Divider Calculator",
+    "Capacitor Charging Voltage"
+])
+
+if solver_option == "Ohm's Law Calculator":
+    voltage = st.number_input("Voltage (V)", value=0.0)
+    current = st.number_input("Current (A)", value=0.0)
+    resistance = st.number_input("Resistance (Ω)", value=0.0)
     if st.button("Calculate"):
-        with st.spinner("Calculating..."):
-            result = solve_ohms_law(
-                voltage if voltage != 0 else None,
-                current if current != 0 else None,
-                resistance if resistance != 0 else None
-            )
-            st.success(result)
+        result = ohms_law(voltage if voltage != 0 else None,
+                          current if current != 0 else None,
+                          resistance if resistance != 0 else None)
+        st.success(result)
+
+elif solver_option == "RC Circuit Time Constant":
+    resistance = st.number_input("Resistance (Ω)", value=0.0)
+    capacitance = st.number_input("Capacitance (F)", value=0.0)
+    if st.button("Calculate"):
+        st.success(rc_time_constant(resistance, capacitance))
+
+elif solver_option == "Resonant Frequency of LC Circuit":
+    inductance = st.number_input("Inductance (H)", value=0.0)
+    capacitance = st.number_input("Capacitance (F)", value=0.0)
+    if st.button("Calculate"):
+        st.success(resonant_frequency(inductance, capacitance))
+
+elif solver_option == "Power Dissipation in Resistors":
+    current = st.number_input("Current (A)", value=0.0)
+    voltage = st.number_input("Voltage (V)", value=0.0)
+    resistance = st.number_input("Resistance (Ω)", value=0.0)
+    if st.button("Calculate"):
+        st.success(power_dissipation(current if current != 0 else None,
+                                      voltage if voltage != 0 else None,
+                                      resistance if resistance != 0 else None))
+
+elif solver_option == "Voltage Divider Calculator":
+    v_in = st.number_input("Input Voltage (V)", value=0.0)
+    r1 = st.number_input("Resistor R1 (Ω)", value=0.0)
+    r2 = st.number_input("Resistor R2 (Ω)", value=0.0)
+    if st.button("Calculate"):
+        st.success(voltage_divider(v_in, r1, r2))
+
+elif solver_option == "Capacitor Charging Voltage":
+    voltage_max = st.number_input("Maximum Voltage (V)", value=0.0)
+    resistance = st.number_input("Resistance (Ω)", value=0.0)
+    capacitance = st.number_input("Capacitance (F)", value=0.0)
+    time = st.number_input("Time (s)", value=0.0)
+    if st.button("Calculate"):
+        st.success(capacitor_charging(voltage_max, resistance, capacitance, time))
+
 
 elif choice == "📝 Interactive Quiz":
     st.header("📝 Quick Quiz")
@@ -156,7 +220,7 @@ elif choice == "📂 Study Resources":
     st.markdown("""
     - [All About Circuits](https://www.allaboutcircuits.com/)
     - [Electronics Tutorials](https://www.electronics-tutorials.ws/)
-    - [Basic Electronics YouTube Playlist](https://www.youtube.com/playlist?list=PLJvKqQx2AtfRKsH0spkn9Aqhl9P7ULwl-)
+    - [Basic Electronics YouTube Playlist](https://www.youtube.com/playlist?list=PL0o_zxa4K1BV9E-N8tSExU1djL6slnjbL)
     """)
 
 # ---- Footer ----
