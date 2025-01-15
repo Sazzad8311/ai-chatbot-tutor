@@ -18,6 +18,8 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# Initialize OpenAI client with the new SDK
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ---- Page Config ----
 st.set_page_config(
@@ -45,8 +47,8 @@ st.markdown("""
 
 # ---- Helper Functions ----
 def explain_concept(concept):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Or "gpt-4" if you have access
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",  # or "gpt-4" if available
         messages=[
             {"role": "system", "content": "You are a helpful electronics tutor."},
             {"role": "user", "content": f"Explain the concept of {concept} in Electronics Device and Circuit."}
@@ -54,7 +56,7 @@ def explain_concept(concept):
         max_tokens=250,
         temperature=0.5
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()
 
 
 def solve_ohms_law(voltage=None, current=None, resistance=None):
