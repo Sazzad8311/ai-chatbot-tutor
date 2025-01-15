@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1kom8fNMLLlkz9UDkedBUWQ8Ne0pc6tm5
 """
 
-!pip install --upgrade openai
 import streamlit as st
 import openai
 import os
@@ -96,7 +95,7 @@ def design_circuit(component):
 
 # ---- Sidebar Navigation ----
 with st.sidebar:
-    st.image("https://airbnb.pvxt.net/c/5614250/567379/4273?u=www.airbnb.co.in/", width=100)
+    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", width=100)
     st.title("📚 AI Chatbot Tutor")
     menu = ["🏠 Home", "📖 Concept Explanation", "🧮 Numerical Solver", "📝 Interactive Quiz", "🔧 Circuit Design", "📂 Study Resources"]
     choice = st.radio("Navigate", menu)
@@ -105,7 +104,7 @@ with st.sidebar:
 if choice == "🏠 Home":
     st.markdown("## 👋 Welcome to the AI Chatbot Tutor!")
     st.info("This interactive tool helps you learn Electronics Devices and Circuits with explanations, quizzes, and problem-solving features.")
-    st.image("https://airbnb.pvxt.net/c/5614250/567379/4273?u=www.airbnb.co.in/", caption="Learn Electronics Effectively")
+    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", caption="Learn Electronics Effectively")
 
 elif choice == "📖 Concept Explanation":
     st.header("📘 Concept Explanation")
