@@ -140,7 +140,7 @@ elif choice == "📖 Concept Explanation":
             st.progress(100)
 
 elif choice == "🧮 Numerical Solver":
-  solver_option = st.selectbox("Select a Numerical Solver", [
+    solver_option = st.selectbox("Select a Numerical Solver", [
     "Ohm's Law Calculator",
     "RC Circuit Time Constant",
     "Resonant Frequency of LC Circuit",
@@ -149,51 +149,51 @@ elif choice == "🧮 Numerical Solver":
     "Capacitor Charging Voltage"
 ])
 
-if solver_option == "Ohm's Law Calculator":
-    voltage = st.number_input("Voltage (V)", value=0.0)
-    current = st.number_input("Current (A)", value=0.0)
-    resistance = st.number_input("Resistance (Ω)", value=0.0)
-    if st.button("Calculate"):
-        result = ohms_law(voltage if voltage != 0 else None,
+    if solver_option == "Ohm's Law Calculator":
+        voltage = st.number_input("Voltage (V)", value=0.0)
+        current = st.number_input("Current (A)", value=0.0)
+        resistance = st.number_input("Resistance (Ω)", value=0.0)
+        if st.button("Calculate"):
+            result = ohms_law(voltage if voltage != 0 else None,
                           current if current != 0 else None,
                           resistance if resistance != 0 else None)
-        st.success(result)
+            st.success(result)
 
-elif solver_option == "RC Circuit Time Constant":
-    resistance = st.number_input("Resistance (Ω)", value=0.0)
-    capacitance = st.number_input("Capacitance (F)", value=0.0)
-    if st.button("Calculate"):
-        st.success(rc_time_constant(resistance, capacitance))
+    elif solver_option == "RC Circuit Time Constant":
+        resistance = st.number_input("Resistance (Ω)", value=0.0)
+        capacitance = st.number_input("Capacitance (F)", value=0.0)
+        if st.button("Calculate"):
+            st.success(rc_time_constant(resistance, capacitance))
 
-elif solver_option == "Resonant Frequency of LC Circuit":
-    inductance = st.number_input("Inductance (H)", value=0.0)
-    capacitance = st.number_input("Capacitance (F)", value=0.0)
-    if st.button("Calculate"):
-        st.success(resonant_frequency(inductance, capacitance))
+    elif solver_option == "Resonant Frequency of LC Circuit":
+        inductance = st.number_input("Inductance (H)", value=0.0)
+        capacitance = st.number_input("Capacitance (F)", value=0.0)
+        if st.button("Calculate"):
+            st.success(resonant_frequency(inductance, capacitance))
 
-elif solver_option == "Power Dissipation in Resistors":
-    current = st.number_input("Current (A)", value=0.0)
-    voltage = st.number_input("Voltage (V)", value=0.0)
-    resistance = st.number_input("Resistance (Ω)", value=0.0)
-    if st.button("Calculate"):
-        st.success(power_dissipation(current if current != 0 else None,
-                                      voltage if voltage != 0 else None,
-                                      resistance if resistance != 0 else None))
+    elif solver_option == "Power Dissipation in Resistors":
+        current = st.number_input("Current (A)", value=0.0)
+        voltage = st.number_input("Voltage (V)", value=0.0)
+        resistance = st.number_input("Resistance (Ω)", value=0.0)
+        if st.button("Calculate"):
+            st.success(power_dissipation(current=current if current != 0 else None,
+                                          voltage=voltage if voltage != 0 else None,
+                                          resistance=resistance if resistance != 0 else None))
 
-elif solver_option == "Voltage Divider Calculator":
-    v_in = st.number_input("Input Voltage (V)", value=0.0)
-    r1 = st.number_input("Resistor R1 (Ω)", value=0.0)
-    r2 = st.number_input("Resistor R2 (Ω)", value=0.0)
-    if st.button("Calculate"):
-        st.success(voltage_divider(v_in, r1, r2))
+    elif solver_option == "Voltage Divider Calculator":
+        v_in = st.number_input("Input Voltage (V)", value=0.0)
+        r1 = st.number_input("Resistor R1 (Ω)", value=0.0)
+        r2 = st.number_input("Resistor R2 (Ω)", value=0.0)
+        if st.button("Calculate"):
+            st.success(voltage_divider(v_in, r1, r2))
 
-elif solver_option == "Capacitor Charging Voltage":
-    voltage_max = st.number_input("Maximum Voltage (V)", value=0.0)
-    resistance = st.number_input("Resistance (Ω)", value=0.0)
-    capacitance = st.number_input("Capacitance (F)", value=0.0)
-    time = st.number_input("Time (s)", value=0.0)
-    if st.button("Calculate"):
-        st.success(capacitor_charging(voltage_max, resistance, capacitance, time))
+    elif solver_option == "Capacitor Charging Voltage":
+        voltage_max = st.number_input("Maximum Voltage (V)", value=0.0)
+        resistance = st.number_input("Resistance (Ω)", value=0.0)
+        capacitance = st.number_input("Capacitance (F)", value=0.0)
+        time = st.number_input("Time (s)", value=0.0)
+        if st.button("Calculate"):
+            st.success(capacitor_charging(voltage_max, resistance, capacitance, time))
 
 
 elif choice == "📝 Interactive Quiz":
