@@ -140,7 +140,7 @@ elif choice == "📖 Concept Explanation":
             st.progress(100)
 
 elif choice == "🧮 Numerical Solver":
-    solver_option = st.selectbox("Select a Numerical Solver", [
+  solver_option = st.selectbox("Select a Numerical Solver", [
     "Ohm's Law Calculator",
     "RC Circuit Time Constant",
     "Resonant Frequency of LC Circuit",
