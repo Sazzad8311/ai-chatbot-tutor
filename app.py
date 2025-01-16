@@ -54,8 +54,8 @@ def explain_concept(concept):
             {"role": "system", "content": "You are a helpful electronics tutor."},
             {"role": "user", "content": f"Explain the concept of {concept} in Electronics Device and Circuit."}
         ],
-        max_tokens=250,
-        temperature=0.5
+        max_tokens=1000,
+        temperature=0.7
     )
     return response.choices[0].message.content.strip()
 
