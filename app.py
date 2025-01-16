@@ -252,6 +252,7 @@ elif choice == "🧮 Numerical Solver":
 elif choice == "📝 Interactive Quiz":
     st.header("📝 Quick Quiz")
     quiz = generate_quiz()
+    question = random.choice(questions)
     st.write(quiz["question"])
     selected_option = st.radio("Select your answer:", quiz["options"])
     if st.button("Submit Answer"):
