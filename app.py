@@ -109,10 +109,13 @@ def generate_quiz():
 def design_circuit(component):
     try:
         response = client.completions.create(
-            model="text-davinci-003",  # Use the appropriate model
-            prompt=f"Design a simple circuit using {component}.",
-            max_tokens=250,
-            temperature=0.5
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful tutor for designing electronic circuits."},
+                {"role": "user", "content": f"Design a basic circuit using {component}. Explain the design."}
+            ],
+            max_tokens=500,
+            temperature=0.7
         )
         return response.choices[0].text.strip()
     except Exception as e:
@@ -129,7 +132,7 @@ with st.sidebar:
 if choice == "🏠 Home":
     st.markdown("## 👋 Welcome to the AI Chatbot Tutor!")
     st.info("This interactive tool helps you learn Electronics Devices and Circuits with explanations, quizzes, and problem-solving features.")
-    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", caption="Learn Electronics Effectively")
+    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", width=1000, caption="Learn Electronics Effectively")
 
 elif choice == "📖 Concept Explanation":
     st.header("📘 Concept Explanation")
