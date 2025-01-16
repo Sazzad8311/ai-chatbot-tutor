@@ -59,6 +59,19 @@ def explain_concept(concept):
     )
     return response.choices[0].message.content.strip()
 
+def safe_api_call(prompt):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=150
+        )
+        return response.choices[0].message.content.strip()
+    except openai.error.RateLimitError:
+        time.sleep(10)  # Wait 10 seconds before retrying
+        return safe_api_call(prompt)
+
 def ohms_law(voltage=None, current=None, resistance=None):
     if voltage is None:
         return f"Voltage (V) = {current} A × {resistance} Ω = {current * resistance} V"
