@@ -129,7 +129,7 @@ with st.sidebar:
 if choice == "🏠 Home":
     st.markdown("## 👋 Welcome to the AI Chatbot Tutor!")
     st.info("This interactive tool helps you learn Electronics Devices and Circuits with explanations, quizzes, and problem-solving features.")
-    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", width=1000, caption="Learn Electronics Effectively")
+    st.image("https://miro.medium.com/v2/resize:fit:1100/format:webp/1*jMIid8wkWhV2b0dKWZ-wKw.jpeg", width=500, caption="Learn Electronics Effectively")
 
 elif choice == "📖 Concept Explanation":
     st.header("📘 Concept Explanation")
