@@ -158,7 +158,6 @@ def generate_quiz():
             "answer": "C) Common Collector"
         }
     ]
-    return random.choice(questions)
 
 def design_circuit(component):
     try:
