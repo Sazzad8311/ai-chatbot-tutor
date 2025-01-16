@@ -109,11 +109,8 @@ def generate_quiz():
 def design_circuit(component):
     try:
         response = client.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful tutor for designing electronic circuits."},
-                {"role": "user", "content": f"Design a basic circuit using {component}. Explain the design."}
-            ],
+            model="gpt-3.5-turbo-instruct",  # or use "davinci-002"
+            prompt=f"Design a basic circuit using {component}. Explain the design.",
             max_tokens=500,
             temperature=0.7
         )
