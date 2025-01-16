@@ -97,12 +97,66 @@ def capacitor_charging(voltage_max, resistance, capacitance, time):
 
 def generate_quiz():
     questions = [
-        {"question": "What is the function of a diode?",
-         "options": ["Amplify signals", "Allow current in one direction", "Store charge", "Convert AC to DC"],
-         "answer": "Allow current in one direction"},
-        {"question": "Which component amplifies signals?",
-         "options": ["Resistor", "Capacitor", "Transistor", "Inductor"],
-         "answer": "Transistor"}
+        {
+            "question": "What is the relationship between voltage, current, and resistance?",
+            "options": [
+                "A) V = IR",
+                "B) V = I/R",
+                "C) V = R/I",
+                "D) V = IR^2"
+            ],
+            "answer": "A) V = IR"
+        },
+        {
+            "question": "What is the resistance of a resistor with color bands Red, Violet, Brown, and Gold?",
+            "options": [
+                "A) 270 Ω ±5%",
+                "B) 2700 Ω ±10%",
+                "C) 27 Ω ±1%",
+                "D) 2.7 Ω ±5%"
+           ],
+            "answer": "A) 270 Ω ±5%"
+        },
+        {
+            "question": "In a parallel circuit, how does the voltage across each branch compare?",
+            "options": [
+                "A) It divides equally",
+                "B) It remains the same",
+                "C) It depends on resistance",
+                "D) It adds up across branches"
+            ],
+            "answer": "B) It remains the same"
+        },
+        {
+            "question": "What happens to a capacitor in an AC circuit as frequency increases?",
+            "options": [
+                "A) Its reactance increases",
+                "B) Its reactance decreases",
+                "C) It acts as a resistor",
+                "D) It becomes an open circuit"
+            ],
+            "answer": "B) Its reactance decreases"
+        },
+        {
+            "question": "At what condition does a diode start conducting significantly?",
+            "options": [
+                "A) Reverse Bias",
+                "B) Forward Bias after threshold voltage",
+                "C) Zero Bias",
+                "D) Constantly conducts"
+            ],
+            "answer": "B) Forward Bias after threshold voltage"
+        },
+        {
+            "question": "Which transistor configuration offers the highest input impedance?",
+            "options": [
+                "A) Common Emitter",
+                "B) Common Base",
+                "C) Common Collector",
+                "D) Darlington Pair"
+            ],
+            "answer": "C) Common Collector"
+        }
     ]
     return random.choice(questions)
 
